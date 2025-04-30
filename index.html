@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="icon" type="image/png" href="https://cdn-icons-png.flaticon.com/512/190/190411.png">
+    <title>To-Do List</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" />
+    <link
+        href="https://fonts.googleapis.com/css2?family=National+Park:wght@200..800&family=Poppins:wght@400;600&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background: linear-gradient(135deg, #fff0f6, #f8f9fa);
+            color: #333;
+            min-height: 100vh;
+            padding-top: 40px;
+        }
+
+        .todo-container {
+            max-width: 750px;
+            margin: auto;
+            padding: 2rem;
+            background: #ffffff;
+            border-radius: 20px;
+            box-shadow: 0 0 40px #d0004265;
+            
+            transition: all 0.3s ease;
+        }
+
+        .heading {
+            font-family: "National Park", sans-serif;
+            font-weight: 900;
+            font-size: 40px;
+            color: #fc0071;
+            border-radius: 5px;
+            border-top: 3px solid #d03279;
+        }
+
+
+        .priority-dropdown {
+            border-radius: 12px;
+            box-shadow: none;
+            border: 2px solid #c1125a;
+            padding: 10px 14px;
+            font-weight: 500;
+            color: #c1125a;
+        }
+
+        .form-control {
+            border-radius: 12px;
+            box-shadow: none;
+            border: 2px solid #c1125a;
+            padding: 10px 14px;
+            font-weight: 500;
+            color: #c1125a;
+        }
+
+        .form-control:focus {
+            border-color: #c1125a;
+            box-shadow: 0 0 10px rgba(193, 18, 91, 0.448);
+        }
+
+        .edit-form {
+            border-radius: 12px;
+            box-shadow: none;
+            border: none;
+            padding: 10px 10px;
+            font-weight: 500;
+            width: 100%;
+        }
+
+        .edit-form:focus {
+            border-color: none;
+            outline: none;
+        }
+
+        .priority-dropdown {
+            border: 2px solid #c1125a;
+            border-radius: 12px;
+            background-color: #ffffff;
+            color: #333;
+            transition: all 0.3s ease;
+            box-shadow: none;
+        }
+
+        .priority-dropdown:hover,
+        .priority-dropdown:focus {
+            background-color: #ffffff !important;
+            border-color: #c1125a !important;
+            color: #c1125a !important;
+            box-shadow: none !important;
+            outline: none;
+        }
+
+        .btn-primary {
+            border-radius: 12px;
+            background-color: #c1125a;
+            border: none;
+            font-size: 20px;
+            font-weight: 500;
+            padding: 10px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary:hover {
+            background-color: #de0f65;
+            transform: scale(1.02);
+            
+        }
+
+        .dropdown-menu {
+            border-radius: 10px;
+            overflow: hidden;
+            background-color: #ffffff;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+        }
+
+        .dropdown-item {
+            color: #c1125a;
+            font-weight: 500;
+            padding: 10px 16px;
+        }
+
+        .dropdown-item:hover {
+            background-color: #fff0f6;
+            color: #a30e4f;
+        }
+
+        .task-card {
+            background: #ffffff;
+            border-radius: 14px;
+            padding: 1rem;
+            margin-bottom: 1.2rem;
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.103);
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .task-card:hover {
+            transform: translateY(-4px);
+            box-shadow: 0 12px 24px rgba(0, 0, 0, 0.08);
+        }
+
+        .priority-high {
+            border-left: 4px solid #ff0000;
+            background-color: #fff5f5;
+        }
+
+        .priority-medium {
+            border-left: 4px solid #ffb300;
+            background-color: #fffaf0;
+        }
+
+        .priority-low {
+            border-left: 4px solid #006787;
+            background-color: #f0faff;
+        }
+
+        .btn-sm {
+            border-radius: 8px;
+        }
+
+        .btn-warning {
+            background-color: #ffb300;
+            border: none;
+            color: white;
+        }
+
+        .btn-warning:hover {
+            background-color: #e0a800;
+            color: white;
+        }
+
+        .btn-danger {
+            background-color: #d00043;
+            border: none;
+        }
+
+        .btn-danger:hover {
+            background-color: #b00039;
+        }
+        </style>
+</head>
+
+<body>
+    <div class="container-fluid">
+        <div class="container todo-container">
+            <div class="text-center mb-2 ">
+                <span class="text-center mb-4 text-uppercase heading">
+                    <i class=" logo-icon fa-solid fa-list-check" width="40" height="40"  class="mb-3" ></i>
+                    To-Do List
+                </span>
+            </div>
+            <hr style=" color:#de0f65; height: 3px; margin-bottom: 20px;">
+    
+            <div class="mb-3">
+                <input type="text" id="taskInput" class="form-control mb-2" placeholder="Add your new task here">
+    
+                <div class="dropdown mb-2">
+                    <button class="btn dropdown-toggle priority-dropdown w-100" type="button" id="dropdownMenuButton"
+                        data-bs-toggle="dropdown" aria-expanded="false">
+                        Choose Priority
+                    </button>
+                    <ul class="dropdown-menu w-100 shadow-sm" aria-labelledby="dropdownMenuButton">
+                        <li><a class="dropdown-item taskOption" data-value="low" href="#">Low Priority</a></li>
+                        <li><a class="dropdown-item taskOption" data-value="medium" href="#">Medium Priority</a></li>
+                        <li><a class="dropdown-item taskOption" data-value="high" href="#">High Priority</a></li>
+                    </ul>
+                </div>
+    
+                <input type="hidden" id="prioritySelect" value="low" />
+                <button onclick="addTask()" class="btn btn-primary w-100">Add Task</button>
+            </div>
+    
+            <div id="taskList"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+
+    <script>
+        let tasks = [];
+
+        function addTask() {
+            const input = document.getElementById('taskInput');
+            const priority = document.getElementById('prioritySelect').value;
+            const text = input.value.trim();
+
+            if (text === '') return;
+
+            tasks.push({ text, priority });
+            input.value = '';
+            renderTasks();
+        }
+
+        function renderTasks() {
+            const list = document.getElementById('taskList');
+            list.innerHTML = '';
+
+            tasks.forEach((task, index) => {
+                const card = document.createElement('div');
+                card.className = `task-card priority-${task.priority}`;
+                card.innerHTML = `
+                    <div id="taskText-${index}">
+                        <strong>${task.text}</strong>
+                        <div class="text-muted">Priority: ${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</div>
+                    </div>
+                    <div id="taskActions-${index}" class="mt-2">
+                        <button onclick="startInlineEdit(${index})" class="btn btn-warning btn-sm me-2">Edit</button>
+                        <button onclick="deleteTask(${index})" class="btn btn-danger btn-sm">Delete</button>
+                    </div>
+                `;
+                list.appendChild(card);
+            });
+        }
+
+        function deleteTask(index) {
+            tasks.splice(index, 1);
+            renderTasks();
+        }
+
+        function startInlineEdit(index) {
+            const task = tasks[index];
+            const taskTextDiv = document.getElementById(`taskText-${index}`);
+            const taskActionsDiv = document.getElementById(`taskActions-${index}`);
+
+            taskTextDiv.innerHTML = `
+                <input type="text" id="editInput-${index}" class="edit-form mb-2" value="${task.text}">
+                <div class="text-muted">Priority: ${task.priority.charAt(0).toUpperCase() + task.priority.slice(1)}</div>
+            `;
+
+            taskActionsDiv.innerHTML = `
+                <button onclick="saveInlineEdit(${index})" class="btn btn-warning btn-sm me-2">Save</button>
+                <button onclick="cancelInlineEdit()" class="btn btn-danger btn-sm">Cancel</button>
+            `;
+        }
+
+        function saveInlineEdit(index) {
+            const newText = document.getElementById(`editInput-${index}`).value.trim();
+            if (newText !== '') {
+                tasks[index].text = newText;
+                renderTasks();
+            }
+        }
+
+        function cancelInlineEdit() {
+            renderTasks();
+        }
+
+        document.querySelectorAll('.taskOption').forEach(item => {
+            item.addEventListener('click', function (e) {
+                e.preventDefault();
+                const value = this.getAttribute('data-value');
+                const label = this.textContent;
+                document.getElementById('prioritySelect').value = value;
+                document.getElementById('dropdownMenuButton').textContent = label;
+            });
+        });
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/js/all.min.js"></script>
+</body>
+
+</html>
