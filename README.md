@@ -1,11 +1,10 @@
 # ✅ NexTask - Smart Task Management App
 
-![NexTask Banner](images/logo.jpeg)
 
 **NexTask** is a beautifully designed, priority-based to-do list app built using **HTML**, **CSS (custom + Bootstrap 5)**, and **JavaScript**. With an elegant UI and smooth UX, it's perfect for organizing your daily tasks efficiently.
 
-🔗 **Live Demo:** [Click Here](https://faheemcodes.github.io/Next-Task)  
-📂 **Repository:** [https://github.com/faheemcodes/Next-Task](https://github.com/faheemcodes/Next-Task)
+🔗 **[Live Demo:](https://faheemcodes.github.io/Next-Task)** 
+📂 **[Repository:](https://github.com/faheemcodes/Next-Task)**
 
 ---
 
